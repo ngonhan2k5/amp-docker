@@ -1,0 +1,19 @@
+version: "3.2"
+services:
+    apache:
+        build: './apache' 
+        volumes:
+            - /var/www/html/:/var/www/html/
+            - ./apache/kimono.conf:/usr/local/apache2/conf/vhost/kimono.conf
+        ports: 
+            - 80:80
+        depends_on:
+            - php
+    php:
+        build: './php'
+        ports:
+            - 9000:9000
+        volumes:
+            - /var/www/html/:/var/www/html/
+
+
